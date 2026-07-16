@@ -248,6 +248,17 @@ h2 {
   animation: rise 0.7s ease both;
 }
 
+.asset-card-photo {
+  display: block;
+  width: calc(100% + 2.2rem);
+  max-width: none;
+  margin: -1.1rem -1.1rem 0.9rem;
+  height: 140px;
+  object-fit: cover;
+  border-radius: var(--radius) var(--radius) 0 0;
+  background: #e8eef0;
+}
+
 .asset-card:nth-child(2) { animation-delay: 0.05s; }
 .asset-card:nth-child(3) { animation-delay: 0.1s; }
 .asset-card:nth-child(4) { animation-delay: 0.15s; }
@@ -321,6 +332,38 @@ h2 {
   flex-wrap: wrap;
   gap: 0.5rem;
   align-items: center;
+}
+
+.asset-photo {
+  margin: 0.35rem 0 0;
+  border-radius: calc(var(--radius) - 4px);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #e8eef0;
+  max-width: 520px;
+}
+
+.asset-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.form-embed {
+  margin-top: 0.35rem;
+  border-radius: calc(var(--radius) - 4px);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+
+.form-embed iframe {
+  display: block;
+  width: 100%;
+  min-height: 480px;
+  height: min(70vh, 640px);
 }
 
 .kv-grid {

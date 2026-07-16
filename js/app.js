@@ -6,7 +6,7 @@
   function statusPill(status) {
     const s = String(status || "").toLowerCase();
     let cls = "muted";
-    if (s.includes("service") || s === "matched") cls = "ok";
+    if (s.includes("service") || s === "matched" || s === "active") cls = "ok";
     else if (s.includes("variance") || s.includes("checkout") || s.includes("checked"))
       cls = "warn";
     else if (s.includes("calibrat")) cls = "warn";
@@ -31,6 +31,11 @@
       .map(
         (a) => `
       <a class="asset-card" href="${assetHref(a.id)}">
+        ${
+          a.image
+            ? `<img class="asset-card-photo" src="${a.image}" alt="" width="400" height="300" loading="lazy" />`
+            : ""
+        }
         <p class="asset-id">${a.id}</p>
         <h3>${a.name}</h3>
         <p class="meta">${a.location}<br>${a.department}</p>
@@ -67,8 +72,15 @@
     document.title = `${asset.id} · ${asset.name}`;
 
     const formUrl = window.ASSET_DATA.requestFormUrl;
+    const formEmbedUrl = `${formUrl}${formUrl.includes("?") ? "&" : "?"}embed=true`;
     const cc = asset.cycleCount;
     const deepLink = new URL(assetHref(asset.id), window.location.href).href;
+
+    const photo = asset.image
+      ? `<figure class="asset-photo">
+          <img src="${asset.image}" alt="${asset.name}" width="800" height="600" loading="eager" />
+        </figure>`
+      : "";
 
     root.innerHTML = `
       <section class="detail-hero">
@@ -80,8 +92,9 @@
         </div>
         <h1>${asset.name}</h1>
         <p class="lede">${asset.description}</p>
+        ${photo}
         <div class="actions">
-          <a class="btn btn-primary" href="${formUrl}" target="_blank" rel="noopener noreferrer">Open request form</a>
+          <a class="btn btn-primary" href="#request-form">Request form</a>
           <a class="btn btn-secondary" href="cycle-count.html">Cycle count overview</a>
         </div>
       </section>
@@ -95,27 +108,41 @@
         </div>
         <dl class="kv-grid">
           <div class="kv"><dt>Category</dt><dd>${asset.category}</dd></div>
-          <div class="kv"><dt>Department</dt><dd>${asset.department}</dd></div>
+          <div class="kv"><dt>Team</dt><dd>${asset.department}</dd></div>
           <div class="kv"><dt>Location</dt><dd>${asset.location}</dd></div>
           <div class="kv"><dt>Custodian</dt><dd>${asset.custodian}</dd></div>
           <div class="kv"><dt>Manufacturer</dt><dd>${asset.manufacturer}</dd></div>
           <div class="kv"><dt>Model</dt><dd>${asset.model}</dd></div>
           <div class="kv"><dt>Serial number</dt><dd>${asset.serialNumber}</dd></div>
-          <div class="kv"><dt>Purchase date</dt><dd>${asset.purchaseDate}</dd></div>
+          <div class="kv"><dt>Date issued</dt><dd>${asset.purchaseDate}</dd></div>
           <div class="kv"><dt>NFC UID</dt><dd>${asset.nfcUid}</dd></div>
           <div class="kv"><dt>Status</dt><dd>${asset.status}</dd></div>
         </dl>
       </section>
 
-      <section class="panel section nfc-hint" aria-labelledby="request-heading">
+      <section class="panel section" id="request-form" aria-labelledby="request-heading">
         <div class="section-head">
           <div>
             <h2 id="request-heading">Request form</h2>
             <p>Submit service, move, or support requests for this asset.</p>
           </div>
-          <a class="btn btn-primary" href="${formUrl}" target="_blank" rel="noopener noreferrer">Open form</a>
         </div>
-        <p class="meta">Form link: <a href="${formUrl}" target="_blank" rel="noopener noreferrer">${formUrl}</a></p>
+        <div class="form-embed">
+          <iframe
+            title="Asset request form"
+            width="640"
+            height="480"
+            src="${formEmbedUrl}"
+            frameborder="0"
+            marginwidth="0"
+            marginheight="0"
+            style="border: none; max-width: 100%; max-height: 100vh"
+            allowfullscreen
+            webkitallowfullscreen
+            mozallowfullscreen
+            msallowfullscreen
+          ></iframe>
+        </div>
         <p class="meta" style="margin-top:0.75rem">Encode this URL on the NFC tag so a scan opens this page:</p>
         <div class="nfc-url">${deepLink}</div>
       </section>

@@ -12,7 +12,7 @@ Static demo website for NFC-tagged assets. Scanning an NFC tag opens the matchin
 
 ## Demo assets
 
-1. **AST-001** — Portable Ultrasound Unit  
+1. **AST-001** — Turnover cart  
 2. **AST-002** — Infusion Pump Rack  
 3. **AST-003** — Laptop · Field Service (variance example)  
 4. **AST-004** — Calibration Multimeter  
