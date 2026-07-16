@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NFC Asset Link Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body data-page="home">
+    <header class="site-header">
+      <nav class="nav" aria-label="Primary">
+        <a class="brand" href="index.html">
+          <span class="brand-mark" aria-hidden="true"></span>
+          TagVault Demo
+        </a>
+        <div class="nav-links">
+          <a href="index.html" aria-current="page">Assets</a>
+          <a href="cycle-count.html">Cycle count</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="wrap">
+      <section class="hero">
+        <p class="eyebrow">NFC → asset link</p>
+        <h1>Scan a tag. Open the asset.</h1>
+        <p class="lede">
+          Demo site for NFC-tagged equipment. Each tag stores a URL that opens the matching asset
+          page with basic info, a request form, and cycle count details.
+        </p>
+        <div class="actions">
+          <a class="btn btn-primary" href="cycle-count.html">Cycle count overview</a>
+          <a class="btn btn-secondary" href="asset.html?id=AST-001">Try AST-001</a>
+        </div>
+      </section>
+
+      <section class="panel nfc-hint" aria-labelledby="how-heading">
+        <h2 id="how-heading">How NFC linking works</h2>
+        <p class="meta">
+          Write one of the asset URLs below onto an NFC tag (NDEF URI record). When someone taps the
+          tag with a phone, the browser opens that asset’s information page.
+        </p>
+        <p class="meta" style="margin-top:0.75rem">Example URL for AST-001:</p>
+        <div class="nfc-url" id="sample-nfc-url">asset.html?id=AST-001</div>
+      </section>
+
+      <section class="section" style="margin-top:1.5rem" aria-labelledby="assets-heading">
+        <div class="section-head">
+          <div>
+            <h2 id="assets-heading">Five demo assets</h2>
+            <p>Open any card to preview what an NFC scan would show.</p>
+          </div>
+        </div>
+        <div class="asset-grid" id="asset-grid"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      TagVault demo · static GitHub Pages site · request form:
+      <a href="https://forms.office.com/r/wQM2EHkQBg" target="_blank" rel="noopener noreferrer"
+        >Office Forms</a
+      >
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

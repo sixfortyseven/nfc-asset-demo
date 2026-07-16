@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Asset · NFC Asset Link Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body data-page="asset">
+    <header class="site-header">
+      <nav class="nav" aria-label="Primary">
+        <a class="brand" href="index.html">
+          <span class="brand-mark" aria-hidden="true"></span>
+          TagVault Demo
+        </a>
+        <div class="nav-links">
+          <a href="index.html">Assets</a>
+          <a href="cycle-count.html">Cycle count</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="wrap" id="asset-root">
+      <div class="panel missing">
+        <p class="meta">Loading asset…</p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      Encode <code>asset.html?id=AST-xxx</code> on each NFC tag to deep-link here.
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
